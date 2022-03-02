@@ -1,6 +1,8 @@
 import Link from "next/link"
 import React from "react"
 
+import ThemeSwitch from '../components/theme.switch.component'
+
 const Navigation = () => {
     return (
         <div className="sticky top-0 z-20 py-2 bg-white md:py-6 md:mb-6 dark:bg-black">
@@ -12,6 +14,7 @@ const Navigation = () => {
                         Isaac S. Mwakabira
                     </a>
                 </Link>
+                <ThemeSwitch />
             </div>
         </div>
     )
