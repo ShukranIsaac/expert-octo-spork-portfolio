@@ -1,12 +1,14 @@
 import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
 import Navigation from "../components/navigation.component"
+import Footer from "../components/footer.component"
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Navigation />
             <Component {...pageProps} />
+            <Footer />
         </>
     )
 }
