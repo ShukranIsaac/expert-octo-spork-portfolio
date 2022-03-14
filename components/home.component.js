@@ -1,5 +1,12 @@
 import Head from 'next/head'
-import About from "../components/about.component";
+
+import Acomplishments from './accomplishments'
+import BgAnimation from './animations'
+import ProfileIntro from './intro'
+import Projects from './projects';
+import Technologies from './technologies';
+import AboutProfile from './about'
+import { Section } from '../styles/components'
 
 export default function Home({
     component,
@@ -12,8 +19,15 @@ export default function Home({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="max-w-4xl mx-auto mt-16 antialiased">
-                <About component={component} {...props} />
+            <main className="max-w-12xl mx-auto mt-16 antialiased">
+                <Section grid>
+                    <ProfileIntro />
+                    <BgAnimation />
+                </Section>
+                <AboutProfile />
+                <Projects />
+                <Technologies />
+                <Acomplishments />
             </main>
         </div>
     )
