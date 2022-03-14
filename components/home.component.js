@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import { useEffect, useContext } from 'react'
 
+import { DataItemsContext } from '../data/contexts/dataContexts';
 import Acomplishments from './accomplishments'
 import BgAnimation from './animations'
 import ProfileIntro from './intro'
@@ -10,8 +12,17 @@ import { Section } from '../styles/components'
 
 export default function Home({
     component,
+    initialDataItems,
     ...props
 }) {
+    const { dataItems, setDataItems } = useContext(DataItemsContext)
+
+    useEffect(() => {
+        setDataItems(initialDataItems)
+    }, [])
+
+    console.log(dataItems)
+
     return (
         <div className="space-y-14 lg:space-y-24">
             <Head>
@@ -31,4 +42,21 @@ export default function Home({
             </main>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+    try {
+        return {
+            props: {
+                initialDataItems: [],
+            }
+        };
+    } catch (e) {
+        console.log(e);
+        return {
+            props: {
+                e: "Something Went Wrong!"
+            }
+        }
+    }
 }
