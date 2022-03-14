@@ -14,18 +14,16 @@ const Projects = () => (
                     <BlogCard key={i}>
                         <a href="/#"><Img src={p.image} /></a>
                         <TitleContent>
-                            <a href="/#">
-                                <HeaderThree title>{p.title}</HeaderThree>
-                            </a>
+                            <HeaderThree title="">
+                                <a href="/#">{p.title}</a>
+                            </HeaderThree>
                             <Hr />
                         </TitleContent>
                         <CardInfo className="card-info">{p.description}</CardInfo>
                         <div>
-                            <TitleContent>Stack</TitleContent>
+                            <TitleContent>Tech. Stack</TitleContent>
                             <TagList>
-                                {p.tags.map((t, i) => {
-                                    return <Tag key={i}>{t}</Tag>;
-                                })}
+                                {p.tags.map((t, i) => <Tag key={i}>{t}</Tag>)}
                             </TagList>
                         </div>
                         <UtilityList>

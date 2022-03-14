@@ -20,7 +20,6 @@ row-gap: 3rem;
   padding: 2rem;
   padding-bottom: 0;
 }
-
 `
 export const BlogCard = styled.div`
   border-radius: 10px;
@@ -36,7 +35,6 @@ export const TitleContent = styled.div`
   z-index: 20;
   width: 100%;
 `;
-
 
 export const HeaderThree = styled.h3`
   font-weight: 500;
