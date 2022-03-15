@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import { useEffect, useContext } from 'react'
+import { useContext, useState } from 'react'
+import TopBarProgress from 'react-topbar-progress-indicator'
 
-import { DataItemsContext } from '../data/contexts/dataContexts';
+import { DataItemsContext } from '../data/contexts/dataContexts'
 import Acomplishments from './accomplishments'
 import BgAnimation from './animations'
 import ProfileIntro from './intro'
@@ -11,22 +12,18 @@ import AboutProfile from './about'
 import { Section } from '../styles/components'
 
 export default function Home({
-    component,
-    initialDataItems,
+    component: Component,
     ...props
 }) {
-    const { dataItems, setDataItems } = useContext(DataItemsContext)
+    const { dataItems, loading } = useContext(DataItemsContext)
 
-    useEffect(() => {
-        setDataItems(initialDataItems)
-    }, [])
+    console.log(loading)
 
-    console.log(dataItems)
-
-    return (
+    return (<>
+        { loading && <TopBarProgress /> }
         <div className="space-y-14 lg:space-y-24">
             <Head>
-                <title>Isaac S. Mwakabira</title>
+                <title>{dataItems?.username}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -41,22 +38,5 @@ export default function Home({
                 <Acomplishments />
             </main>
         </div>
-    )
-}
-
-export async function getServerSideProps(context) {
-    try {
-        return {
-            props: {
-                initialDataItems: [],
-            }
-        };
-    } catch (e) {
-        console.log(e);
-        return {
-            props: {
-                e: "Something Went Wrong!"
-            }
-        }
-    }
+    </>)
 }

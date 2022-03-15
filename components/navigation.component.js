@@ -1,13 +1,17 @@
 import Link from "next/link"
-import React from "react"
+import React, { useContext } from "react"
 import Image from "next/image"
 import { AiFillGithub, AiFillTwitterCircle, AiFillLinkedin } from 'react-icons/ai'
 
 import profile from "../public/mishukran.jpg"
 import { Div1, Div2, Div3, NavLink, SocialIcons } from './header.styles'
 import ThemeSwitch from '../components/theme.switch.component'
+import { DataItemsContext } from '../data/contexts/dataContexts';
 
 const Navigation = () => {
+    const { dataItems, loading} = useContext(DataItemsContext)
+    const username = `${ dataItems.firstname } ${ dataItems.lastname }`
+
     return (
         <div className="space-y-14 lg:space-y-24">
             <div className="max-w sticky top-0 z-20 py-2 bg-white md:py-6 md:mb-6 dark:bg-black">
@@ -23,7 +27,7 @@ const Navigation = () => {
                                     width={35}
                                     height={35}
                                 />
-                                <span className="flex ml-3">Isaac S. Mwakabira</span>
+                                <span className="flex ml-3">{ username }</span>
                             </a>
                         </Link>
                     </Div1>

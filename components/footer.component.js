@@ -1,6 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
+
+import { DataItemsContext } from '../data/contexts/dataContexts';
 
 const Footer = () => {
+    const { dataItems } = useContext(DataItemsContext)
+
     return (
         <div>
             <div className="mt-12 lg:mt-18 sm:pb-36 sm:py-12 py-6">
@@ -10,7 +14,7 @@ const Footer = () => {
                         <div className="">
                             Copyright &copy; {
                                 new Date().getFullYear()
-                            }. All Rights Reserved | ShukranIsaac
+                            }. All Rights Reserved | { dataItems?.username }
                         </div>
                         <div className="flex flex-wrap pt-2 sm:space-x-4 space-x-2 font-medium lg:pt-0">
                             <a href="/" className="transition-colors hover:text-yellow-500">Support</a>

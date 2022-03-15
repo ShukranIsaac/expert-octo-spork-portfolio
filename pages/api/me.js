@@ -2,10 +2,15 @@
 
 export default async (req, res) => {
     try {
-        res.status(200)
-            .json({ name: 'ShukranIsaac' });
+        const res = await fetch('http://localhost:8080/v1/users/me', { method: 'GET' })
+        const latestDataItems = await res.json()
+        res.status(200).send(latestDataItems)
     } catch (err) {
-        res.statusCode = 500;
-        res.json({ msg: 'Something went wrong' })
+        await res.status(500)
+            .json({
+                status: 500,
+                msg: 'Something went wrong',
+                error: err
+            })
     }
 }

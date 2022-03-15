@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 const DataItemsContext = createContext();
 
@@ -8,26 +8,33 @@ const DataItemsContext = createContext();
  * @param {*} param0 
  * @returns 
  */
-const DataItemsProvider = ({children}) => {
+const DataItemsProvider = ({ children }) => {
+    const [dataItems, setDataItems] = useState([])
+    const [loading, setLoading] = useState(false)
 
-    const [dataItems, setDataItems] = useState([]);
-
-    const refreshDataItems = async () => {
-        try {
-            const res = await fetch('/api/me');
-            const latestDataItems = await res.json();
-            setDataItems(latestDataItems);
-        } catch(e) {
-            console.error(e)
+    useEffect(() => {
+        const refreshDataItems = async () => {
+            setLoading(true)
+            try {
+                const res = await fetch('http://localhost:8080/v1/users/me', { method: 'GET' });
+                const latestDataItems = await res.json();
+                setDataItems(latestDataItems);
+                setLoading(false)
+            } catch (e) {
+                setLoading(false)
+                console.error(e)
+            }
         }
-    }
+
+        refreshDataItems()
+    }, [])
 
     return (
         <DataItemsContext.Provider
             value={{
                 dataItems,
-                setDataItems,
-                refreshDataItems
+                setDataItems, 
+                loading
             }}
         >
             {children}
@@ -35,4 +42,4 @@ const DataItemsProvider = ({children}) => {
     );
 }
 
-export {DataItemsProvider, DataItemsContext}
+export { DataItemsProvider, DataItemsContext }
