@@ -17,7 +17,7 @@ export default function Home({
 }) {
     const { dataItems, loading } = useContext(DataItemsContext)
 
-    console.log(loading)
+    // console.log(dataItems)
 
     return (<>
         { loading && <TopBarProgress /> }
